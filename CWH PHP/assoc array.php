@@ -14,7 +14,7 @@ echo $favicon[2].'<br>';
 
 $a = array('harray'=> 'red', 'hasssan' => 'blue' , 'hasnain' => 'purple' , 'mujtuba' => 'pink', 9 => 'wah');
 
-echo $a['harray'].'<br><br><br>';
+echo $a['harray'].'<br><br>';
 
 
 foreach ($a as $key => $value) {
