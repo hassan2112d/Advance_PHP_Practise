@@ -1,0 +1,6 @@
+mysqli_num_rows()
+
+mysqli_affected_rows()
+
+mysqli_fetch_assoc()
+
