@@ -11,9 +11,10 @@ echo 'welcome to connection of mysql with php';
 $servername = "localhost";
 $username = "root";
 $password = "";
+$database = "hello1";
 
 
-$conn1 = mysqli_connect($servername,$username,$password);
+$conn1 = mysqli_connect($servername,$username,$password,$database);
 
 if(!$conn1)
 {
