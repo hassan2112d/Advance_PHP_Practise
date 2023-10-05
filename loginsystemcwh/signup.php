@@ -1,3 +1,41 @@
+<?php 
+
+$showalert = false;
+$showerror = false ; 
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+   
+    include 'partials/db_connect.php';
+
+    $username = $_POST["name"];
+    $password = $_POST["password"];
+    $cpassword = $_POST["cpassword"];
+    
+    $exist = false;
+    if($password == $cpassword && $exist == false)
+    {
+        $sql = "INSERT INTO `users` (`s.no`, `username`, `password`, `added_on`) VALUES (NULL, '$username' , '$password' , current_timestamp())";
+        $result = mysqli_query($connect,$sql);
+
+        if($result){
+          
+            $showalert = "Data Submited Successfully";
+
+          
+        }
+      
+    }
+    else{
+
+        $showerror = "Password Does not matched";
+    }
+
+}
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,18 +49,34 @@
   </head>
   <body>
       <?php  require 'partials/_nav.php';    ?>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> Your data Submitted Successfully.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-     </div>
+
+      <?php 
+
+      if($showalert){
+
+        echo '
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> '.$showalert.'
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>';}
+       if($showerror){
+
+        echo '
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Sorry!</strong> '.$showerror.'
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>';}
+     ?>
       <div class="container mt-4 ">
         <h1 class=" text-center">Sign Up</h1>
        <form action="/php/loginsystemcwh/signup.php" method="post">
             <div class="form-group ">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="name">Username</label>
+                <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group ">
                 <label for="password">Password</label>
