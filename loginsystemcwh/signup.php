@@ -11,25 +11,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
     
-    $exist = false;
-    if($password == $cpassword && $exist == false)
+    //Check Username
+    $existSql = "SELECT * from users WHERE `username` = '$username'";
+    $resultexist = mysqli_query($connect,$existSql);
+    $existnum = mysqli_num_rows($resultexist);
+    if($existnum > 0)
     {
-        $sql = "INSERT INTO `users` (`s.no`, `username`, `password`, `added_on`) VALUES (NULL, '$username' , '$password' , current_timestamp())";
-        $result = mysqli_query($connect,$sql);
-
-        if($result){
-          
-            $showalert = "Data Submited Successfully";
-
-          
-        }
-      
+        $showerror = "Username already exists";
     }
     else{
 
-        $showerror = "Password Does not matched";
-    }
+        //Passwords Matches or not
+        if($password == $cpassword )
+        {
+            $sql = "INSERT INTO `users` (`s.no`, `username`, `password`, `added_on`) VALUES (NULL, '$username' , '$password' , current_timestamp())";
+            $result = mysqli_query($connect,$sql);
 
+            if($result){
+            
+                $showalert = "Data Submited Successfully";
+
+            
+            }
+        
+        }
+        else{
+
+            $showerror = "Password Does not matched";
+        }
+    }
 }
 
 
@@ -89,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
             </div>
           
-            <button type="submit" class="btn btn-dark col-md-6 ">Submit</button>
+            <button type="submit" class="btn btn-dark  ">Sign Up</button>
         </form>
       </div>
     <!-- Optional JavaScript -->
