@@ -24,7 +24,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         //Passwords Matches or not
         if($password == $cpassword )
         {
-            $sql = "INSERT INTO `users` (`s.no`, `username`, `password`, `added_on`) VALUES (NULL, '$username' , '$password' , current_timestamp())";
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `users` (`s.no`, `username`, `password`, `added_on`) VALUES (NULL, '$username' , '$hash' , current_timestamp())";
             $result = mysqli_query($connect,$sql);
 
             if($result){

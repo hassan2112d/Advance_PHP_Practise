@@ -13,19 +13,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     
     
     $login = false;
-        $sql = "SELECT * from users WHERE `username` = '$username' AND `password` = '$password'";
+        $sql = "SELECT * from users WHERE `username` = '$username'";
         $result = mysqli_query($connect,$sql);
         $num = mysqli_num_rows($result);
 
         if($num){
-          
-            $login = True;
-            $showalert = "Successfully. You are Logged in. ";
-            session_start();
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $username;
-            header("location: welcome.php");
+          while ($row = mysqli_fetch_assoc($result)) {
+            
+            if(password_verify($password , $row['password']))
+            {
+              $login = True;
+              $showalert = "Successfully. You are Logged in. ";
+              session_start();
+              $_SESSION['loggedin'] = true;
+              $_SESSION['username'] = $username;
+              header("location: welcome.php");
+  
+            }
+            else{
 
+              $showerror = "Invalid Creditionals";
+            }
+
+
+          }
+          
           
         }
       
@@ -81,11 +93,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
        <form action="/php/loginsystemcwh/login.php" method="post">
             <div class="form-group ">
                 <label for="name">Username</label>
-                <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="text" maxlength="11" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group ">
                 <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" maxlength="23" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             
             <button type="submit" class="btn btn-dark  ">Login</button>

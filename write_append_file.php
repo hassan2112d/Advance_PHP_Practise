@@ -12,4 +12,5 @@ echo "welcome to php";
 $a= fopen("file2.txt","a");
 
 fwrite($a,"HI MY NAME IS HASSSAN");
+fclose ($a);
 ?>
