@@ -46,8 +46,6 @@ echo '
 ';
 
 
-include 'partials/_login.php';
-include 'partials/_signup.php'; 
 
 
 ?>

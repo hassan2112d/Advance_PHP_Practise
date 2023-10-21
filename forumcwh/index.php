@@ -11,7 +11,12 @@
     <title>Codeix - Coding Platform</title>
   </head>
   <body>
-        <?php include 'partials/header.php'; ?> 
+        <?php include 'partials/header.php';
+          include 'partials/_dbconnect.php';
+          include 'partials/_login.php';
+          include 'partials/_signup.php'; 
+        ?> 
+          <!-- slider -->
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -38,39 +43,39 @@
                 <span class="sr-only">Next</span>
               </a>
           </div>
+          <!-- slider -->
+
           <div class="container mt-4">
             <h2 class="text-center">CODEIX -- Coding Platform</h2>
             <div class="row">
-              <div class="col-md-4 my-2">
+          <!-- FETCH -->
+  <?php 
+
+           $sql = "SELECT * FROM `category`";
+           $result = mysqli_query($conn,$sql);
+
+           while($row = mysqli_fetch_assoc($result)){
+
+            $name = $row['category_name'];
+            $description = $row['category_description'];
+
+            echo '<div class="col-md-4 my-2">
                 <div class="card my-2" style="width: 18rem;">
-                  <img class="card-img-top" src="https://source.unsplash.com/500x400/?code,python" alt="Card image cap">
+                  <img class="card-img-top" src="https://source.unsplash.com/500x400/?code,'.$name.'" alt="Card image cap">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary ">View</a>
+                        <h5 class="card-title">'.$name.'</h5>
+                        <p class="card-text">'.substr($description,0,40).'.....</p>
+                        <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
-              </div>
-              <div class="col-md-4 my-2">
-                <div class="card my-2" style="width: 18rem;">
-                  <img class="card-img-top" src="https://source.unsplash.com/500x400/?code,python" alt="Card image cap">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary ">View</a>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-4 my-2">
-                <div class="card my-2" style="width: 18rem;">
-                  <img class="card-img-top" src="https://source.unsplash.com/500x400/?code,python" alt="Card image cap">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary ">View</a>
-                    </div>
-                </div>
-              </div>
+              </div>';
+
+           }
+
+  ?>
+          <!-- LOOP -->
+          <!-- CARD -->
+              
             </div>
           </div>
         <?php include 'partials/footer.php'; ?>
