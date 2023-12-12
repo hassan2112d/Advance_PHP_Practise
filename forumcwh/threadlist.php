@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($result))
         <div class="media mb-4">
             <img class="mr-3" src="https://source.unsplash.com/500x400/?user,defaultimage" width="70px" height="70px" alt="Generic placeholder image">
             <div class="media-body">
-                <h5 class="mt-0"><a class="text-dark" href="threadid='.$id.'">'.$name.'</a></h5>
+                <h5 class="mt-0"><a class="text-dark" href="threadquestion.php?quesid='.$id.'">'.$name.'</a></h5>
                 '.$desc.'
             </div>
         </div>';
