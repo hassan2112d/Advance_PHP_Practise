@@ -33,7 +33,7 @@
           </div>
           <!-- slider -->
 
-          <div class="container mt-4">
+          <div class="container mt-4" id="ques">
             <h2 class="text-center">CODEIX -- Coding Platform</h2>
             <div class="row">
           <!-- FETCH -->
@@ -46,14 +46,15 @@
 
             $name = $row['category_name'];
             $description = $row['category_description'];
+            $id = $row['category_id'];
 
             echo '<div class="col-md-4 my-2">
                 <div class="card my-2" style="width: 18rem;">
                   <img class="card-img-top" src="https://source.unsplash.com/500x400/?code,'.$name.'" alt="Card image cap">
                     <div class="card-body text-center">
-                        <h5 class="card-title">'.$name.'</h5>
+                        <h5 class="card-title"><a class="text-dark" href="threadlist.php?catid='.$id.'">'.$name.'</a></h5>
                         <p class="card-text">'.substr($description,0,40).'.....</p>
-                        <a href="#" class="btn btn-primary">View</a>
+                        <a href="threadlist.php?catid='.$id.'" class="btn btn-primary">View</a>
                     </div>
                 </div>
               </div>';
