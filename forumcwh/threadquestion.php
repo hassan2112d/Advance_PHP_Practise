@@ -5,6 +5,7 @@
       
 ?>
 <?php
+ 
 
 $id = $_GET['quesid'];
 
@@ -18,6 +19,32 @@ while($row = mysqli_fetch_assoc($result))
     $desc = $row['thread_desc'];
 }
 
+ $showalert = false;
+ $method = $_SERVER['REQUEST_METHOD'];
+
+ if($method == 'POST'){
+
+    $showalert = true;
+
+   
+    $content = $_POST['content'];
+
+    $sql = "INSERT INTO `comment` (`comment_id`, `comment_content`, `thread_id`, `comment_time`) VALUES (NULL, '$content', $id, current_timestamp())";
+
+    $result = mysqli_query($conn,$sql);
+
+  
+
+    if($showalert){
+        
+        echo '<div class="alert alert-success" role="alert">
+        Success! Your comment posted successfully.
+      </div>';
+    }
+
+  }
+   
+        
 ?>
 <div class="container mt-4">
     <div class="jumbotron">
@@ -29,10 +56,54 @@ while($row = mysqli_fetch_assoc($result))
             <a class="btn btn-danger btn-lg" href="#" role="button">Learn more</a>
         </p>
     </div>
-
+    <form action="<?php $_SERVER['REQUEST_URI']?>" method="post">
+        <h2>Post a Comment</h2>
+       
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Type a comment here:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">POST</button>
+    </form>
     <div class="container" id="ques" >
          <h2 class="mt-4 mb-4 py-4 ">Comments</h2>
+<?php 
 
+  
+  $id = $_GET['quesid'];
+  //echo $id;
+  $sql = "SELECT * FROM `comment` WHERE thread_id = $id";
+  
+  $result = mysqli_query($conn,$sql);
+  $noresult = true;
+  while($row = mysqli_fetch_assoc($result)){
+    $noresult = false;
+    $id = $row['comment_id'];
+    $comment = $row['comment_content'];
+
+
+
+    echo '<div class="media mb-4">
+            <img class="mr-3" src="https://source.unsplash.com/500x400/?user,demoimage" width="70px" height="70px" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0">'.$comment.'</h5>
+                
+            </div>
+        </div>';
+        
+ }
+  
+
+  if($noresult){
+        echo  '<div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">No Question</h1>
+            <p class="lead">Be the first one to ask the questions</p>
+        </div>
+        </div>';
+  }
+  
+?>
    
 
     </div>
