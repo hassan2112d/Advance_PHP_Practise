@@ -11,23 +11,23 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/php/forumcwh/partials/_handlesignup.php" method="post">
             <div class="form-group">
                 
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name :">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Name :">
             </div>
             
             <div class="form-group">
                 
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email :">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Email :">
             </div>
             <div class="form-group">
                 
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password :">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password :">
             </div>
             <div class="form-group">
                 
-                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password :">
+                <input type="password" class="form-control" id="exampleInputPassword2" name="cfpassword" placeholder="Confirm Password :">
             </div>
            
             <button type="submit" class="btn btn-outline-danger">Sign In</button>

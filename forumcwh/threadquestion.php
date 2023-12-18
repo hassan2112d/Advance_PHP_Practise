@@ -20,9 +20,7 @@ while($row = mysqli_fetch_assoc($result))
 }
 
  $showalert = false;
- $method = $_SERVER['REQUEST_METHOD'];
-
- if($method == 'POST'){
+ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $showalert = true;
 
@@ -37,9 +35,7 @@ while($row = mysqli_fetch_assoc($result))
 
     if($showalert){
         
-        echo '<div class="alert alert-success" role="alert">
-        Success! Your comment posted successfully.
-      </div>';
+        echo "<script>alert('Success! Your data registered Successfully;)</script>";
     }
 
   }
@@ -80,12 +76,14 @@ while($row = mysqli_fetch_assoc($result))
     $noresult = false;
     $id = $row['comment_id'];
     $comment = $row['comment_content'];
+    $comment_time = $row['comment_time'];
 
 
 
     echo '<div class="media mb-4">
             <img class="mr-3" src="https://source.unsplash.com/500x400/?user,demoimage" width="70px" height="70px" alt="Generic placeholder image">
             <div class="media-body">
+                <p class="font-weight-bold">Anonymous posted on '.$comment_time.')</p>
                 <h5 class="mt-0">'.$comment.'</h5>
                 
             </div>
