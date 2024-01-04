@@ -51,9 +51,13 @@ if($method == "POST"){
             <a class="btn btn-danger btn-lg" href="#" role="button">Learn more</a>
         </p>
     </div>
+    <?php
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+
+    echo '
     <div class="container">
         <h2 class="mt-4 mb-4 py-4 ">Start Disscussion:</h2>
-        <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
+        <form action="'. $_SERVER['REQUEST_URI'] .'" method="post">
             <div class="form-group">
                 <label for="title">Problem Title:</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="title" aria-describedby="emailHelp">
@@ -66,7 +70,13 @@ if($method == "POST"){
         
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
-    </div>
+    </div>';}
+
+    else{
+
+        echo '<p class="lead">To Start the Discussion. Login First. </p>';
+    }
+    ?>
     <div class="container" id="ques" >
          <h2 class="mt-4 mb-4 py-4 ">QUESTIONS :</h2>
 

@@ -52,7 +52,12 @@ while($row = mysqli_fetch_assoc($result))
             <a class="btn btn-danger btn-lg" href="#" role="button">Learn more</a>
         </p>
     </div>
-    <form action="<?php $_SERVER['REQUEST_URI']?>" method="post">
+<?php 
+
+   if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+   {
+    echo '
+    <form action="'. $_SERVER['REQUEST_URI'].'" method="post">
         <h2>Post a Comment</h2>
        
         <div class="form-group">
@@ -63,6 +68,14 @@ while($row = mysqli_fetch_assoc($result))
     </form>
     <div class="container" id="ques" >
          <h2 class="mt-4 mb-4 py-4 ">Comments</h2>
+    ';
+   }
+   else{
+
+    echo  '<p class="lead">To Post a Comment. Login First. </p>';
+   }
+
+?>
 <?php 
 
   
@@ -80,7 +93,7 @@ while($row = mysqli_fetch_assoc($result))
 
 
 
-    echo '<div class="media mb-4">
+    echo '<div class="media mb-4 my-4">
             <img class="mr-3" src="https://source.unsplash.com/500x400/?user,demoimage" width="70px" height="70px" alt="Generic placeholder image">
             <div class="media-body">
                 <p class="font-weight-bold">Anonymous posted on '.$comment_time.')</p>

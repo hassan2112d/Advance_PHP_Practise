@@ -4,6 +4,16 @@
           include 'partials/_login.php';
           include 'partials/_signup.php'; 
 
+          
+
+          if(isset($_GET['login']) && $_GET['login']== "wrongemail"){
+
+            echo "<script>alert('Invalid Credientials!')</script>";
+          }
+          if(isset($_GET['login']) && $_GET['login']== "wrongpassword"){
+
+            echo "<script>alert('Wrong Password !')</script>";
+          }
           if(isset($_GET['signup']) && $_GET['signup']== "true"){
 
             echo "<script>alert('Sign up successful! Please log in to continue')</script>";
