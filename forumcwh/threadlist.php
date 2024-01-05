@@ -24,9 +24,10 @@ if($method == "POST"){
     $showalert = true;
     $title = $_POST['title'];
     $desc = $_POST['desc'];
+    $thread_user_id = $_POST['sno'];
 
      $sql= "INSERT INTO `thread` (`thread_name`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `added_on`)
-     VALUES ('$title', '$desc', '$id', '0', current_timestamp())";
+     VALUES ('$title', '$desc', '$id', '$thread_user_id', current_timestamp())";
 
      $result = mysqli_query($conn,$sql);
 
@@ -66,6 +67,7 @@ if($method == "POST"){
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Problem Description:</label>
                 <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <input type="hidden" name="sno" value="'.$_SESSION['sno'].'">
             </div>
         
             <button type="submit" class="btn btn-success">Submit</button>
@@ -91,13 +93,19 @@ if($method == "POST"){
         $id = $row['thread_id'];
         $name = $row['thread_name'];
         $desc = $row['thread_desc'];
+        $user_id = $row['thread_user_id'];
+        
+        $sql2 = "SELECT user_name FROM `user` WHERE user_id = $user_id ";
+        $result2 = mysqli_query($conn,$sql2);
+        $row = mysqli_fetch_assoc($result2);
        
         echo '
-        <div class="media mb-4">
+        <div class="media mb-4 my-4">
             <img class="mr-3" src="https://source.unsplash.com/500x400/?user,defaultimage" width="70px" height="70px" alt="Generic placeholder image">
             <div class="media-body">
-                <h5 class="mt-0"><a class="text-dark" href="threadquestion.php?quesid='.$id.'">'.$name.'</a></h5>
-                '.$desc.'
+                <p class="font-weight-bold"> '.$row['user_name'] .'</p>
+                <h5 class="mt-0" > <a class="text-dark" href="threadquestion.php?quesid='.$id.'"> Q :'.$name.'</a></h5>
+                
             </div>
         </div>';
         

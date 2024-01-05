@@ -26,8 +26,9 @@ while($row = mysqli_fetch_assoc($result))
 
    
     $content = $_POST['content'];
+    $commentby = $_POST['sno'];
 
-    $sql = "INSERT INTO `comment` (`comment_id`, `comment_content`, `thread_id`, `comment_time`) VALUES (NULL, '$content', $id, current_timestamp())";
+    $sql = "INSERT INTO `comment` (`comment_id`, `comment_content`, `thread_id`,`comment_user_id`, `comment_time`) VALUES (NULL, '$content', $id, $commentby, current_timestamp())";
 
     $result = mysqli_query($conn,$sql);
 
@@ -63,6 +64,7 @@ while($row = mysqli_fetch_assoc($result))
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Type a comment here:</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+            <input type="hidden" name="sno" value="'.$_SESSION['sno'].'">
         </div>
         <button type="submit" class="btn btn-success">POST</button>
     </form>
@@ -90,13 +92,20 @@ while($row = mysqli_fetch_assoc($result))
     $id = $row['comment_id'];
     $comment = $row['comment_content'];
     $comment_time = $row['comment_time'];
+    $user_id = $row['comment_user_id'];
+        
+    $sql2 = "SELECT user_name FROM `user` WHERE user_id = $user_id ";
+    $result2 = mysqli_query($conn,$sql2);
+    $row = mysqli_fetch_assoc($result2);
+   
+
 
 
 
     echo '<div class="media mb-4 my-4">
             <img class="mr-3" src="https://source.unsplash.com/500x400/?user,demoimage" width="70px" height="70px" alt="Generic placeholder image">
             <div class="media-body">
-                <p class="font-weight-bold">Anonymous posted on '.$comment_time.')</p>
+                <p class="font-weight-bold">'.$row['user_name'].' at '.$comment_time.')</p>
                 <h5 class="mt-0">'.$comment.'</h5>
                 
             </div>

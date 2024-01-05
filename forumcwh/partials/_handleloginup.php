@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       
       session_start();
       $_SESSION['loggedin']= true;
+      $_SESSION['sno'] = $row['user_id'];
       $_SESSION['useremail']= $email;
       
       header("Location: /php/forumcwh/index.php");
