@@ -31,23 +31,29 @@
             <a class="nav-link" href="about.php">About</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Category
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">';
+
+    include 'partials/_dbconnect.php';    
+    $sql = "SELECT category_name,category_id FROM `category`";
+    $result = mysqli_query($conn,$sql);
+
+    while($row = mysqli_fetch_assoc($result)){
+      echo '  
+            <a class="dropdown-item" href="threadlist.php?catid='.$row['category_id'].'">'.$row['category_name'].'</a>';
+            
+       
+    }
+
+      echo '
         </li>
         <li class="nav-item">
             <a class="nav-link d" href="contact.php">Contact</a>
         </li>
         </ul>
         <div class="conatiner">
-        <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="get" action="search.php">
+        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary my-2 my-sm-0 mr-4" type="submit">Search</button>';
 
         
