@@ -23,7 +23,11 @@ $showalert = false;
 if($method == "POST"){
     $showalert = true;
     $title = $_POST['title'];
+    $title =  str_replace("<","&lt", $title);
+    $title =  str_replace(">","&gt", $title);
     $desc = $_POST['desc'];
+    $desc =  str_replace("<","&lt", $desc);
+    $desc =  str_replace(">","&lt", $desc);
     $thread_user_id = $_POST['sno'];
 
      $sql= "INSERT INTO `thread` (`thread_name`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `added_on`)

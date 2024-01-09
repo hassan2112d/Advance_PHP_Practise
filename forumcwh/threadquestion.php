@@ -26,6 +26,8 @@ while($row = mysqli_fetch_assoc($result))
 
    
     $content = $_POST['content'];
+    $content =  str_replace("<","&lt", $content);
+    $content =  str_replace(">","&gt", $content);
     $commentby = $_POST['sno'];
 
     $sql = "INSERT INTO `comment` (`comment_id`, `comment_content`, `thread_id`,`comment_user_id`, `comment_time`) VALUES (NULL, '$content', $id, $commentby, current_timestamp())";
