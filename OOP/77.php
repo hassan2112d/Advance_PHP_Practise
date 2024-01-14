@@ -23,7 +23,7 @@ class student{
 
     $this->id = $studentid;
 
-    return $this->id;
+    echo $this->id;
   }
 
 
@@ -31,15 +31,13 @@ class student{
 
 $student1 = new student;
 echo '<br>'.$student1->set_name("hassan").'';
-echo '<br>'.$student1->student_id(5673).'';
+$student1->student_id(76654);
 
 $student2 = new student;
 echo '<br>'.$student2->set_name("mujtuba").'';
-echo '<br>'.$student2->student_id(9823).'';
 
 $student3 = new student;
 echo '<br>'.$student3->set_name("raza").'';
-echo '<br>'.$student3->student_id(65738).'';
 
 
 ?>
