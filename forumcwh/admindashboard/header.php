@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include 'OOP/alert.php';
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +22,7 @@ session_start();
     
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="admindashboard/adminassets/css/portal.css">
+
 
 </head> 
 
@@ -168,6 +170,21 @@ session_start();
 			                        <span class="nav-link-text">Settings</span>
 						        </a><!--//nav-link-->
 						    </li><!--//nav-item-->
+							<!-- ... your existing menu items ... -->
+
+<li class="nav-item">
+    <a class="nav-link" href="adminpartials/_logout.php">
+        <span class="nav-icon">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11 1.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-1 0v-12a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 0 .708L2.707 8l1.939 1.939a.5.5 0 1 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 0 1 .708 0zM9.5 8a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M9.354 9.354a.5.5 0 0 1 0-.708L11.293 6l-1.939-1.939a.5.5 0 1 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708 0z"/>
+            </svg>
+        </span>
+        <span class="nav-link-text">Logout</span>
+    </a><!--//nav-link-->
+</li><!--//nav-item-->
+
 						   
 						  
 					    </ul><!--//footer-menu-->
