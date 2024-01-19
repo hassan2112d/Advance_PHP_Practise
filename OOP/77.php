@@ -37,7 +37,7 @@ $student2 = new student;
 echo '<br>'.$student2->set_name("mujtuba").'';
 
 $student3 = new student;
-echo '<br>'.$student3->set_name("raza").'';
-
+$hello = $student3->set_name("raza");
+echo $hello;
 
 ?>

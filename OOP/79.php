@@ -1,7 +1,7 @@
 <?php 
 
 
-class student{
+class student3{
 
   public $name;
   public $class;
@@ -25,7 +25,7 @@ class student{
 
 }
 
-$student1 = new student("Hassan",10,7633434); 
+$student1 = new student3("Hassan",10,7633434); 
 
 echo "<br> the id of the hassan is $student1->student_id"
 
