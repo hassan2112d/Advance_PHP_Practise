@@ -1,6 +1,16 @@
 <?php
 include 'adminpartials/adminheader.php';
 include 'partials/_dbconnect.php';
+
+
+if(isset($_GET['adminwrongpassword']) && $_GET['adminwrongpassword']== "false"){
+    echo '<script>alert("Wrong Password . You have three more chances.");</script>';
+
+}
+if(isset($_GET['adminwrongusername']) && $_GET['adminwrongusername']== "false"){
+    echo '<script>alert("Wrong Username. TRY AGAIN");</script>';
+}
+
 ?>
 
 <div class="limiter">

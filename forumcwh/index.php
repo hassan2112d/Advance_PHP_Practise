@@ -26,6 +26,8 @@
 
             echo "<script>alert('Confirm Password does not match!')</script>";
           }
+          
+       
         ?> 
           <!-- slider -->
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
