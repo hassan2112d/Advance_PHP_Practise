@@ -1,8 +1,16 @@
 <?php
+session_start();
+
+
 include 'adminpartials/adminheader.php';
 include 'partials/_dbconnect.php';
 
 
+
+if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
+    header("Location: /php/forumcwh/Dashboard/profile.php");
+    exit();
+}
 if(isset($_GET['adminwrongpassword']) && $_GET['adminwrongpassword']== "false"){
     echo '<script>alert("Wrong Password . You have three more chances.");</script>';
 
@@ -11,7 +19,8 @@ if(isset($_GET['adminwrongusername']) && $_GET['adminwrongusername']== "false"){
     echo '<script>alert("Wrong Username. TRY AGAIN");</script>';
 }
 
-?>
+
+echo '
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url(assets/images/bg-01.jpg);">
@@ -38,8 +47,12 @@ if(isset($_GET['adminwrongusername']) && $_GET['adminwrongusername']== "false"){
     </div>
 </div>
 
-<div id="dropDownSelect1"></div>
+<div id="dropDownSelect1"></div>';
+include '../adminpartials/adminfooter.php';
+ 
 
-<?php
-include 'adminpartials/adminfooter.php';
-?>
+
+
+
+
+

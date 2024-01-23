@@ -22,7 +22,7 @@ if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 4) {
 
 // Check if the user is already logged in
 if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] === true) {
-    header("Location: /php/forumcwh/admindashboard.php");
+    header("Location: /php/forumcwh/Dashboard/profile.php");
     exit();
 }
 
@@ -46,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($conn, $sql);
     $data = mysqli_fetch_assoc($result);
 
-    if ($name == $data['username'] && $_SESSION['login_attempts'] < 4) {
+    if ($name == $data['admin_username'] && $_SESSION['login_attempts'] < 4) {
         if ($userpassword == password_verify($userpassword, $data['admin_password'])) {
             // Successful login
             $_SESSION['adminloggedin'] = true;
             $_SESSION['username'] = $name;
             unset($_SESSION['login_attempts']);
-            header("Location: /php/forumcwh/admindashboard.php");
+            header("Location: /php/forumcwh/Dashboard/profile.php");
             exit();
         } else {
             // Incorrect password
